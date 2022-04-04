@@ -4,3 +4,148 @@
     padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+/* imposto tutto custom, bootstrap lo parcheggio un attimo :P */
+
+/* flex e dimensioni varie */
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-between {
+    justify-content: space-between;
+}
+
+.flex-center-v {
+    align-items: center;
+}
+
+.flex-align {
+    align-items: flex-start;
+}
+
+.height-90 {
+    width: 100%;
+    height: 90px;
+}
+
+.height-calc-90 {
+    width: 100%;
+    height: calc(100% - 90px)
+}
+
+.height-calc-60 {
+    width: 100%;
+    height: calc(100% - 60px);
+}
+
+
+
+/* sfondo generale */
+.sfondo {
+    width: 100vw;
+    height: 100vh;
+    background-image: 
+      linear-gradient(to bottom,
+        #009688 0vh, 
+        #009688 15vh, 
+        #dddbd1 15vh,
+        #d2dbdc 100vh);
+}
+
+.container {
+    width: 80%;
+    min-width: 950px;
+    height: calc(100% - 40px);
+}
+
+
+
+/* barra laterale */
+.sidebar {
+    width: 35%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.sideup {
+    background: #eaeaea;
+    padding-left: 15px;
+}
+
+img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.user-name {
+    margin-left: 20px;
+}
+
+.icons-container > i {
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 26px;
+    color: #b1b1b1;
+}
+
+.sidedown {
+    background: #fafafa;
+}
+
+.notification {
+    background: #8edafc;
+}
+
+.bell {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 50%;
+    margin: 0 15px;
+}
+
+.bell > i {
+    color: #8edafc;
+    font-size: 26px;
+}
+
+.bell-text > a {
+    color: #4a7a86;
+}
+
+.search-container {
+    width: 100%;
+    height: 60px;
+}
+
+.search {
+    padding-left: 15px;
+    font-size: 15px;
+    width: 95%;
+    height: 30px;
+    border: none;
+    margin: 15px 10px;
+}
+
+.contacts {
+    overflow-y: auto;
+}
+
+.contact {
+    background:#fff;
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.last-mess {    
+    margin-left: 20px;
+    font-size: 12px;
+    color: rgb(179, 179, 179);
+}
