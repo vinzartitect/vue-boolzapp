@@ -27,7 +27,7 @@
 
                     <!-- parte superiore user -->
                     <div class="sideup height-90 flex flex-between">
-                        <div class="flex flex-center">
+                        <div class="avatar-container flex flex-center">
                             <img :src="'./asset/img/avatar' + user.avatar + '.jpg'" alt="">
                             <div class="user-name">{{user.name}}</div>
                         </div>
@@ -57,14 +57,22 @@
 
 
                         <!-- lista dei contatti -->
-                        <div class="height-calc-90">
+                        <div class="list-container height-calc-90">
 
                             <div class="search-container">
-                                <input class="search" placeholder="Cerca o inizia una nuova chat" type="text" name="" value="">
+                                <input class="search" 
+                                       v-model='searchContact' 
+                                       placeholder="Cerca o inizia una nuova chat" 
+                                       type="text" name="" value=""
+                                >
                             </div>
 
                             <div class="contacts height-calc-60">
-                                <div v-for='(element,index) in contacts' class="contact height-90 flex flex-align">
+                                <div v-for='(element,index) in contacts'
+                                     v-if='filterContacts(element)'
+                                     class="contact height-90 flex flex-align"
+                                     @click='changeContact(index)'
+                                >
                                     <img :src="'./asset/img/avatar' + element.avatar + '.jpg'" alt="">
                                     
                                     <div>
@@ -81,17 +89,82 @@
                 </div>
                 <!-- fine sidebar laterale -->
 
+                <!-- master area messaggi -->
+                <div class="master flex flex-end-col">
+
+                    <!-- main contenuto contatti messaggi -->
+                    <div class="main height-calc-90">
+
+                        <!-- barra contatto selezionato -->
+                        <div class="main-bar height-90 flex flex-between">
+
+                            <div class="selected-contact flex flex-center">
+                                <img :src="'./asset/img/avatar' + contacts[selectedContact].avatar + '.jpg'" alt="">
+                                <div class="user-name">{{contacts[selectedContact].name}} <br>
+                                    <span>Ultimo accesso {{lastConnection(selectedContact)}}</span>
+                                </div>
+                            </div>
+
+                            <div class="icons-container flex flex-center">
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                                <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true"></i>
+                            </div>
+
+                        </div>
+
+                        <!-- main contenuto della chat -->
+                         <div class="main-content height-calc-90">
+                            <div v-for='(element, index) in contacts[selectedContact].messages'
+                                :class="element.status"
+                            >
+                                {{element.message}}
+
+                                <div class="btn-menu" @click="openMenu(index)">
+                                    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                                </div>                               
+                                
+                                <div class="date">{{element.date}}</div>
+
+                                <div class="message-menu">
+                                    <div @click="deleteMessage(index)">Delete Message</div>
+                                </div>
+                            </div>
+                        </div>        
+
+                    </div>
+                    <!-- fine main contenuto contatti messaggi -->
+
+                    <!-- barra input messaggi -->
+                    <div class="bottom-bar height-90 flex flex-center">
+                        <i class="fa-solid fa-face-smile" aria-hidden="true"></i>
+                        <input class="input-message" 
+                               v-model="user.newMessage"
+                               @keyup.enter="insertMessage"
+                               type="text" name="" value=""
+                        >
+                        <i class="fa-solid fa-microphone" aria-hidden="true"></i>
+                    </div>
+
+                </div>
+                <!-- fine master area messaggi -->
+
             </div>
+            <!-- fine container centrale -->
 
         </div>
+        <!-- fine sfondo generale grigio -->
     
     </div>
-
+    <!-- fine istanziato js -->
 
 
     <!-- javascript only -->
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- days.js -->
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
     <script type="text/javascript" src="./asset/js/main.js" ></script>
     
